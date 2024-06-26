@@ -1,6 +1,6 @@
 //all the functions related to database is being done here
 
-const StudentModel=require('../models/student');
+const StudentModel=require('../models/student.repository');
 
 //adding api
 

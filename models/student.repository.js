@@ -34,6 +34,12 @@ const StudentSchema=mongoose.Schema({
         min:[   9_999_999,"Regno of the student must be 15 or above"],
         max:[1_000_000_000,"Regno of the student must be less than 23"],
     },
+    passowrd:{
+        type:String,
+        validate:(password)=>{
+            password.length>=8,
+        }
+    },
 });
 
 const StudentModel=mongoose.model("SummerPep",StudentSchema);
