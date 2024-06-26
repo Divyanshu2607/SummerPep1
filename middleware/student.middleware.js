@@ -1,4 +1,4 @@
-const{ verifyToken }=reuqire('../util/jwt');
+const{ verifyToken }=require('../util/jwt');
 const studentService=require("../service/student.service");
 
 const studentMiddleware=async(req,res,next)=>{
@@ -25,4 +25,9 @@ const isClassRepresentativeMiddleware=(req,res,next)=>{
         });
     }
     next();
+}
+
+module.exports={
+    studentMiddleware,
+    isClassRepresentativeMiddleware,
 }

@@ -34,11 +34,16 @@ const StudentSchema=mongoose.Schema({
         min:[   9_999_999,"Regno of the student must be 15 or above"],
         max:[1_000_000_000,"Regno of the student must be less than 23"],
     },
-    passowrd:{
+    isClassRepresentative:{
+        type:Boolean,
+        deafult:false,
+    },
+    
+    password:{
         type:String,
-        validate:(password)=>{
+        validate:(password)=>
             password.length>=8,
-        }
+        
     },
 });
 
