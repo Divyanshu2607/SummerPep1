@@ -9,7 +9,7 @@ const addStudent=async(req,res)=>{
     }
     catch (err) {
         return res.status(500).send({
-          message: "Error occurred",
+          message: "Error yeh occurred",
         });
 }
 }
@@ -37,16 +37,17 @@ const getStudentByRegistrationNumber=async (req,res)=>{
 
 const updateStudent=async(req,res)=>{
     try{
-        const { registrationNumber }=req.params;
-        let studentAfterUpdate={...req.body,registrationNumber};
+      let studentAfterUpdate = { ...req.body };
         const wasUpdated=await studentService.updateStudent(studentAfterUpdate);
         if(!wasUpdated){
             return res.status(404).send({
                 message:"Update failed: Student not Found"
             });
-            return res.status(200).send({ message: "Update Success!" });
+            
         } 
-    }catch (err) {
+        return res.status(200).send({ message: "Update Success!" });
+    }
+    catch (err) {
           console.error(err);
           return res.status(500).send({ message: "An error occurred" });
         }
@@ -55,7 +56,7 @@ const updateStudent=async(req,res)=>{
 
 const deleteStudent=async (req,res)=>{
     try{
-        const registrationNumber=req.params;
+      let { registrationNumber } = req.params;
         const wasDeleted=await studentService.deleteStudent(
             registrationNumber
         );
@@ -73,20 +74,21 @@ const deleteStudent=async (req,res)=>{
 const loginStudent=async (req,res)=>{
   try{
     const { registrationNumber,password }=req.body;
-    const student=await studentService.loginStudent({registrationNumber,passowrd});
+    const student=await studentService.loginStudent(registrationNumber,password);
     if(!student){
       return res.status(400).send({
         message:"Invalid Credentials",
       });
     }
-    const token=generateToken({registrationNumber:student.registrationNumber});
+    const token=generateToken({
+      registrationNumber:student.registrationNumber});
 
     return res.status(200).send({student,token});
   }
   catch(err){
     console.error(err);
     return res.status(500).send({
-      message:"An error occurred"
+      message:"login nahi ho paya/controller pr aaja"
     });
   }
 }

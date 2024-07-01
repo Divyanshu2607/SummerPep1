@@ -1,6 +1,6 @@
 //all the functions related to database is being done here
 
-const StudentModel=require('../models/student.repository');
+const StudentModel=require('../models/student');
 
 //adding api
 
@@ -37,8 +37,8 @@ const updateStudent=async(studentAfterUpdate)=>{
 }
 
 const deleteStudent=async (registrationNumber)=>{
-    const deleteStudent=await StudentModel.deleteOne({
-        registrationNumber
+    const deleteResult=await StudentModel.deleteOne({
+        registrationNumber,
     });
     if (!deleteResult.deletedCount) { 
         console.info(
@@ -58,3 +58,5 @@ const deleteStudent=async (registrationNumber)=>{
         updateStudent,
         deleteStudent,
     };
+
+   
