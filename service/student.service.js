@@ -21,6 +21,7 @@ const getStudentByRegistrationNumber=async(registrationNumber)=>{
             console.info(
               `Student with Registration Number ${registrationNumber} was not found.`
             );
+            return null;
           } else {
             console.info(
               `Student with Registration Number ${registrationNumber} was successfully found.`

@@ -9,7 +9,7 @@ const addStudent=async(req,res)=>{
     }
     catch (err) {
         return res.status(500).send({
-          message: "Error yeh occurred",
+          message: "Error occurred",
         });
 }
 }
